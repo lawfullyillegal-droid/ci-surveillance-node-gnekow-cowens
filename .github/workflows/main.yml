@@ -35,9 +35,8 @@ jobs:
         done
 
     - name: Autocommit logs
-      run: |
-        git config --global user.name "Forensic Bot"
-        git config --global user.email "bot@localhost"
-        git add logs/
-        git commit -m "Autocommit: forensic logs"
-        git push
+      uses: stefanzweifel/git-auto-commit-action@v4
+      with:
+        commit_message: Autocommit: forensic logs
+        branch: main
+        file_pattern: logs/*
