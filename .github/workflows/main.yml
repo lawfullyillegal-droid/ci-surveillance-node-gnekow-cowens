@@ -31,4 +31,13 @@ jobs:
       run: |
         for file in logs/*.json; do
           sha256sum "$file" >> logs/hashes.txt
-          echo "$(date -u) $file
+          echo "$(date -u) $file" >> logs/timestamps.txt
+        done
+
+    - name: Autocommit logs
+      run: |
+        git config --global user.name "Forensic Bot"
+        git config --global user.email "bot@localhost"
+        git add logs/
+        git commit -m "Autocommit: forensic logs"
+        git push
