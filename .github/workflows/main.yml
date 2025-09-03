@@ -1,0 +1,41 @@
+name: Forensic Bot Deployment
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repo
+      uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+
+    - name: Install dependencies
+      run: pip install -r requirements.txt
+
+    - name: Run triangulation bot
+      run: python triangulate.py
+
+    - name: Hash and timestamp logs
+      run: |
+        mkdir -p logs
+        for file in logs/*.json; do
+          sha256sum "$file" >> logs/hashes.txt
+          echo "$(date -u) $file" >> logs/timestamps.txt
+        done
+
+    - name: Autocommit logs
+      run: |
+        git config --global user.name "Forensic Bot"
+        git config --global user.email "bot@localhost"
+        git add logs/
+        git commit -m "Autocommit: forensic logs"
+        git push
