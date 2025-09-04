@@ -1,3 +1,9 @@
 requests
 scapy
 netaddr
+numpy
+scipy
+matplotlib
+pyrtlsdr
+pyaudio
+SoapySDR
