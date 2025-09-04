@@ -1,0 +1,50 @@
+{
+  "scanner_frequencies": [
+    {
+      "freq": "154.8000",
+      "description": "Police Dispatch",
+      "location": "Primary"
+    },
+    {
+      "freq": "155.7750", 
+      "description": "Police Tactical",
+      "location": "Secondary"
+    },
+    {
+      "freq": "460.2250",
+      "description": "Police Admin",
+      "location": "Admin"
+    },
+    {
+      "freq": "453.2125",
+      "description": "Police Car-to-Car",
+      "location": "Tactical"
+    }
+  ],
+  "location": {
+    "latitude": 40.7128,
+    "longitude": -74.0060,
+    "name": "Default Monitoring Location",
+    "coverage_radius_meters": 5000
+  },
+  "monitoring": {
+    "mac_scan_interval": 30,
+    "scanner_scan_interval": 5,
+    "log_retention_days": 365,
+    "enable_triangulation": true,
+    "enable_pattern_analysis": true,
+    "real_time_alerts": true
+  },
+  "accountability": {
+    "track_officer_patterns": true,
+    "flag_high_activity": 50,
+    "flag_pattern_anomalies": true,
+    "generate_daily_reports": true,
+    "export_format": "json"
+  },
+  "security": {
+    "encrypt_logs": false,
+    "require_auth": false,
+    "log_level": "INFO"
+  }
+}
